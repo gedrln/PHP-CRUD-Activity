@@ -1,14 +1,21 @@
 <?php
 
 function validateNumber($number) {
-    if (!is_numeric($number)) {
-        die("Invalid input: Must be a number.");
+    if (!is_numeric($number) ) {
+        return false;
     }
-
-    if ($number < 0) {
-        die("Invalid input: Price and Quantity cannot be negative.");
+    if ($number < 0){
+    return false;
     }
+    return true;
+}
 
-    return $number;
+function computeTotal($price, $qty) {
+    return $price * $qty;
+}
+
+function redirect($page) {
+    header("Location: $page");
+    exit;
 }
 ?>
