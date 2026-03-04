@@ -1,13 +1,15 @@
 <?php
 require 'db.php';
- 
+require 'functions.php';
 
-$id = $_GET['id'];
- 
- 
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+if ($id <= 0) {
+    redirect("read.php");
+}
+
 $stmt = $pdo->prepare("DELETE FROM transactions WHERE id = :id");
 $stmt->execute([':id' => $id]);
- 
- 
-header("Location: read.php");
+
+redirect("read.php");
 ?>
